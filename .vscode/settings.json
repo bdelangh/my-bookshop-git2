@@ -1,0 +1,16 @@
+{
+  "files.exclude": {
+    "**/.gitignore": true,
+    "**/.git": true,
+    "**/.vscode": true
+  },
+  "sqltools.connections": [
+    {
+      "database": "${workspaceFolder:my-bookshop}/db/my-bookshop.db",
+      "driver": "SQLite",
+      "name": "my-bookshop",
+      "previewLimit": 50
+    }
+  ],
+  "sqltools.useNodeRuntime": true
+}
