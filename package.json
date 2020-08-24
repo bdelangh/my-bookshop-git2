@@ -19,10 +19,7 @@
   "cds": {
     "requires": {
       "db": {
-        "kind": "sql",
-        "credentials": {
-          "database": "db/my-bookshop.db"
-        }
+        "kind": "sql"
       }
     }
   }
