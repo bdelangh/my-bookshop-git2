@@ -7,9 +7,6 @@ resources:
   - container: cfcli
     image: 'ppiper/cf-cli'
     options: --user 0:0 --privileged
-  - container: node
-    image: 'geekykaran/headless-chrome-node-docker:latest'
-    options: --privileged
 
 trigger:
 - master
