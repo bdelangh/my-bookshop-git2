@@ -21,7 +21,7 @@ stages:
       container: mbt
       steps:
         - bash: 'mbt build -p=cf'
-        - publish: $(System.DefaultWorkingDirectory)/.
+        - publish: $(System.DefaultWorkingDirectory)/mta-archives/.
           artifact: mtar
 
 - stage: deploy
@@ -33,5 +33,5 @@ stages:
       container: cfcli
       steps:
         - download: current
-          artifact: WebApp
+          artifact: mtar
         - bash: 'cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf deploy $(Pipeline.Workspace)/mta-archives/my-bookshop2_1.0.0.mtar -f'
