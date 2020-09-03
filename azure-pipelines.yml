@@ -34,4 +34,4 @@ stages:
       steps:
         - download: current
           artifact: WebApp
-        - bash: 'cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf deploy $(Pipeline.Workspace)/WebApp/my-bookshop2_1.0.0.mtar -f'
+        - bash: 'cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf deploy $(System.DefaultWorkingDirectory)/WebApp/my-bookshop2_1.0.0.mtar -f'
