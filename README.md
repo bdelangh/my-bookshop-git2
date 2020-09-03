@@ -60,11 +60,8 @@ The mta file can be generated via the command
 Building and deploying the application can be done via Azure DevOps. SAP provides docker images to build and deploy the app. These images can be called via Azure DevOps.
 The docker images can be found on dockerhub.
 <!-- * Deprecated - MTA Builder : [ppiper/mta-archive-builder](https://hub.docker.com/r/ppiper/mta-archive-builder). For more information, have a look at [Multitarget Application Archive Builder](https://github.com/SAP/devops-docker-mta-archive-builder) -->
-* Cloud MTA Build Tool : [devxci/mbtci](https://hub.docker.com/r/devxci/mbtci). For more information, have look at [Welcome to the Cloud MTA Build Tool (mbt)](https://sap.github.io/cloud-mta-build-tool/) and [Cloud MTA Build Tool overview](https://github.com/SAP/cloud-mta-build-tool)
-
-
-
-
+* Cloud MTA Build Tool (mbt) : [devxci/mbtci](https://hub.docker.com/r/devxci/mbtci). For more information, have a look at [Welcome to the Cloud MTA Build Tool (mbt)](https://sap.github.io/cloud-mta-build-tool/) and [Cloud MTA Build Tool overview](https://github.com/SAP/cloud-mta-build-tool)
+* Cloud Foundry Command Line Interface (cli): [ppiper/cf-cli](https://hub.docker.com/r/ppiper/cf-cli). For more information, have a look at [Cloud Foundry Command Line Interface](https://github.com/SAP/devops-docker-cf-cli)
 
 Before stepping to Azure DevOps, let's run the docker images manually. This can be done on a Linux vm with docker installed.
 * Clone the github directory & change to the root directory of you application
@@ -79,7 +76,8 @@ sudo docker run -it --rm -v "$(pwd):/project" devxci/mbtci:latest mbt build -p=c
 * the mtar file should now be available at ../mta_archives
 * Deploy to SAP Cloud Platform using the following command :
 ```
-sudo docker run
+sudo docker run --rm -v "${PWD}":/project ppiper/cf-cli /bin/bash -c "cf login -u 'bart.delanghe@microsoft.com' -p 'MicroBelg&7' -a 'https://api.cf.us10.hana.ondemand.com' -o '68f6a2bbtrial' -s 'dev' && cd /project && cf deploy"
+  
 ```
 
 
