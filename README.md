@@ -27,7 +27,9 @@ Learn more at https://cap.cloud.sap/docs/get-started/
 ## Deployment
 This project can be deployed via a mta-file.
 The deployment descriptor is mta.yaml.
- The mta file can be generated via the command
+Documentation can be found at [Deploy using MTA](https://cap.cloud.sap/docs/advanced/deploy-to-cloud#deploy-using-mta)
+
+The mta file can be generated via the command
  ```
  cds add mta
  ```
@@ -56,6 +58,24 @@ The deployment descriptor is mta.yaml.
 
 ## Azure DevOps Integration
 Building and deploying the application can be done via Azure DevOps. SAP provides docker images to build and deploy the app. These images can be called via Azure DevOps.
+The docker images can be found on dockerhub.
+* MTA Builder : [ppiper/mta-archive-builder](https://hub.docker.com/r/ppiper/mta-archive-builder). For more information, have a look at [Multitarget Application Archive Builder](https://github.com/SAP/devops-docker-mta-archive-builder).
+
+
+
+Before stepping to Azure DevOps, let's run the docker images manually. This can be done on a Linux vm with docker installed.
+* Clone the github directory & change to the root directory of you application
+```
+git clone https://github.com/bdelangh/my-bookshop-mta.git
+cd my-bookshop-mta
+```
+* run the docker image to build the pipeline. The folder containing the project needs to be mounted into the image at `/project`.
+```
+sudo docker run --rm -v "${PWD}":/project -it ppiper/mta-archive-builder:latest mtaBuild --mtar dummy.mtar --build-target CF build
+```
+
+
+
 
 * Create a new project in Azure DevOps
 * Create a new pipeline
