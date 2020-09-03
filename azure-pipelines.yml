@@ -1,0 +1,53 @@
+name: my-bookshop-mta
+resources:
+  containers:
+  - container: mta
+    image: 'ppiper/mta-archive-builder:latest'
+    options: --user 0:0
+  - container: cfcli
+    image: 'ppiper/cf-cli'
+    options: --user 0:0 --privileged
+  - container: node
+    image: 'geekykaran/headless-chrome-node-docker:latest'
+    options: --privileged
+
+trigger:
+- master
+
+stages:
+- stage: build
+  displayName: Build MTA for SAP Cloud Platform
+  jobs:
+    - job: build
+      pool:
+        vmImage: 'ubuntu-latest'
+      container: mta
+      steps:
+        - bash: 'mtaBuild --build-target CF --mtar MySampleApp.mtar build'
+        - publish: $(System.DefaultWorkingDirectory)/.
+          artifact: WebApp
+          
+
+- stage: test
+  displayName: Run Karma Test Suite
+  jobs:
+    - job: test
+      pool:
+        vmImage: 'ubuntu-latest'
+      container: node
+      steps:
+        - bash: 'cd MySampleApp && npm config set @sap:registry "https://npm.sap.com" && npm install && npm run-script test'
+        - publish: $(System.DefaultWorkingDirectory)/.
+          artifact: TestResult
+
+- stage: deploy
+  displayName: Deployment to SAP Cloud Platform (cf)
+  jobs:
+    - job: deploy
+      pool:
+        vmImage: 'ubuntu-latest'
+      container: cfcli
+      steps:
+        - download: current
+          artifact: WebApp
+        - bash: 'cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf deploy $(Pipeline.Workspace)/WebApp/MySampleApp.mtar -f'
