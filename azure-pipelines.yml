@@ -1,8 +1,8 @@
 name: my-bookshop-mta
 resources:
   containers:
-  - container: mta
-    image: 'ppiper/mta-archive-builder:latest'
+  - container: mbt
+    image: 'devxci/mbtci:latest'
     options: --user 0:0
   - container: cfcli
     image: 'ppiper/cf-cli'
@@ -13,14 +13,14 @@ trigger:
 
 stages:
 - stage: build
-  displayName: Build MTA for SAP Cloud Platform
+  displayName: Build MTA for SAP Cloud Platform using Cloud MTBuild Tool
   jobs:
     - job: build
       pool:
         vmImage: 'ubuntu-latest'
-      container: mta
+      container: mbt
       steps:
-        - bash: 'mtaBuild --build-target CF --mtar MyBookshop.mtar build'
+        - bash: 'mbt build -p=cf'
         - publish: $(System.DefaultWorkingDirectory)/.
           artifact: WebApp
 
@@ -34,4 +34,4 @@ stages:
       steps:
         - download: current
           artifact: WebApp
-        - bash: 'cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf deploy $(Pipeline.Workspace)/WebApp/MyBookshop.mtar -f'
+        - bash: 'cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf deploy $(Pipeline.Workspace)/WebApp/my-bookshop2_1.0.0.mtar -f'

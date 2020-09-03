@@ -56,8 +56,8 @@ The mta file can be generated via the command
  cf install-plugin multiapps
  ```
 
-## Azure DevOps Integration
-Building and deploying the application can be done via Azure DevOps. SAP provides docker images to build and deploy the app. These images can be called via Azure DevOps.
+## Dcoker Images
+SAP provides docker images to build and deploy the app. These images can be called via Azure DevOps.
 The docker images can be found on dockerhub.
 <!-- * Deprecated - MTA Builder : [ppiper/mta-archive-builder](https://hub.docker.com/r/ppiper/mta-archive-builder). For more information, have a look at [Multitarget Application Archive Builder](https://github.com/SAP/devops-docker-mta-archive-builder) -->
 * Cloud MTA Build Tool (mbt) : [devxci/mbtci](https://hub.docker.com/r/devxci/mbtci). For more information, have a look at [Welcome to the Cloud MTA Build Tool (mbt)](https://sap.github.io/cloud-mta-build-tool/) and [Cloud MTA Build Tool overview](https://github.com/SAP/cloud-mta-build-tool)
@@ -76,14 +76,14 @@ sudo docker run -it --rm -v "$(pwd):/project" devxci/mbtci:latest mbt build -p=c
 * the mtar file should now be available at ../mta_archives
 * Deploy to SAP Cloud Platform using the following command :
 ```
-sudo docker run --rm -v "${PWD}":/project ppiper/cf-cli /bin/bash -c "cf login -u 'bart.delanghe@microsoft.com' -p 'MicroBelg&7' -a 'https://api.cf.us10.hana.ondemand.com' -o '68f6a2bbtrial' -s 'dev' && cd /project && cf deploy"
-  
+sudo docker run --rm -v "${PWD}":/project ppiper/cf-cli /bin/bash -c "cf login -u 'bart.delanghe@microsoft.com' -p 'MicroBelg&7' -a 'https://api.cf.us10.hana.ondemand.com' -o '68f6a2bbtrial' -s 'dev' && cd /project && cf deploy mta_archives/my-bookshop2_1.0.0.mtar"
 ```
+* You can now test the bookshop app on the SAP Cloud Platform
 
+## Integration with Azure DevOps
+Building and deploying the application can be done via Azure DevOps. 
 
-
-
-
+* Login to Azure DevOps
 * Create a new project in Azure DevOps
 * Create a new pipeline
     * point to the github with the source code as the source
