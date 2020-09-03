@@ -1,0 +1,37 @@
+name: my-bookshop-mta
+resources:
+  containers:
+  - container: mta
+    image: 'ppiper/mta-archive-builder:latest'
+    options: --user 0:0
+  - container: cfcli
+    image: 'ppiper/cf-cli'
+    options: --user 0:0 --privileged
+
+trigger:
+- master
+
+stages:
+- stage: build
+  displayName: Build MTA for SAP Cloud Platform
+  jobs:
+    - job: build
+      pool:
+        vmImage: 'ubuntu-latest'
+      container: mta
+      steps:
+        - bash: 'mtaBuild --build-target CF --mtar MyBookshop.mtar build'
+        - publish: $(System.DefaultWorkingDirectory)/.
+          artifact: WebApp
+
+- stage: deploy
+  displayName: Deployment to SAP Cloud Platform (cf)
+  jobs:
+    - job: deploy
+      pool:
+        vmImage: 'ubuntu-latest'
+      container: cfcli
+      steps:
+        - download: current
+          artifact: WebApp
+        - bash: 'cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf deploy $(Pipeline.Workspace)/WebApp/MyBookshop.mtar -f'
