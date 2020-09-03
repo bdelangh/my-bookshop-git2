@@ -59,7 +59,10 @@ The mta file can be generated via the command
 ## Azure DevOps Integration
 Building and deploying the application can be done via Azure DevOps. SAP provides docker images to build and deploy the app. These images can be called via Azure DevOps.
 The docker images can be found on dockerhub.
-* MTA Builder : [ppiper/mta-archive-builder](https://hub.docker.com/r/ppiper/mta-archive-builder). For more information, have a look at [Multitarget Application Archive Builder](https://github.com/SAP/devops-docker-mta-archive-builder).
+<!-- * Deprecated - MTA Builder : [ppiper/mta-archive-builder](https://hub.docker.com/r/ppiper/mta-archive-builder). For more information, have a look at [Multitarget Application Archive Builder](https://github.com/SAP/devops-docker-mta-archive-builder) -->
+* Cloud MTA Build Tool : [devxci/mbtci](https://hub.docker.com/r/devxci/mbtci). For more information, have look at [Welcome to the Cloud MTA Build Tool (mbt)](https://sap.github.io/cloud-mta-build-tool/) and [Cloud MTA Build Tool overview](https://github.com/SAP/cloud-mta-build-tool)
+
+
 
 
 
@@ -71,8 +74,14 @@ cd my-bookshop-mta
 ```
 * run the docker image to build the pipeline. The folder containing the project needs to be mounted into the image at `/project`.
 ```
-sudo docker run --rm -v "${PWD}":/project -it ppiper/mta-archive-builder:latest mtaBuild --mtar dummy.mtar --build-target CF build
+sudo docker run -it --rm -v "$(pwd):/project" devxci/mbtci:latest mbt build -p=cf
 ```
+* the mtar file should now be available at ../mta_archives
+* Deploy to SAP Cloud Platform using the following command :
+```
+sudo docker run
+```
+
 
 
 
