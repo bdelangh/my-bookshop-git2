@@ -34,4 +34,4 @@ stages:
       steps:
         - download: current
           artifact: mtar
-        - bash: 'cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf deploy $(Pipeline.Workspace)/mta_archives/my-bookshop2_1.0.0.mtar -f'
+        - bash: 'cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf deploy $(Pipeline.Workspace)/mtar/my-bookshop2_1.0.0.mtar -f'
