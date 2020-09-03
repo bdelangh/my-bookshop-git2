@@ -89,6 +89,13 @@ Building and deploying the application can be done via Azure DevOps.
     * point to the github with the source code as the source
     * select a 'starter pipeline'
     * Insert the following code as pipeline
+```yaml
+
+```
+Notes :
+* System.DefaultWorkingDirectory : The local path on the agent where your source code files are downloaded.
+* Pipeline.Workspace : The local path on the agent where all folders for a given build pipeline are created.
+
 * Create Pipeline variables
     * CF-USER = SAP Cloud Platform username
     * CF-PASSWORD = SAP Cloud Platform password

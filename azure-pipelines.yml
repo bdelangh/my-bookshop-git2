@@ -22,7 +22,7 @@ stages:
       steps:
         - bash: 'mbt build -p=cf'
         - publish: $(System.DefaultWorkingDirectory)/.
-          artifact: WebApp
+          artifact: mtar
 
 - stage: deploy
   displayName: Deployment to SAP Cloud Platform (cf)
@@ -34,4 +34,4 @@ stages:
       steps:
         - download: current
           artifact: WebApp
-        - bash: 'cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf deploy /home/vsts/work/1/WebApp/my-bookshop2_1.0.0.mtar -f'
+        - bash: 'cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf deploy $(Pipeline.Workspace)/mta-archives/my-bookshop2_1.0.0.mtar -f'
