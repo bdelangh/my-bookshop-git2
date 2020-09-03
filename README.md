@@ -87,7 +87,15 @@ Building and deploying the application can be done via Azure DevOps.
 * Create a new project in Azure DevOps
 * Create a new pipeline
     * point to the github with the source code as the source
-    * select a started pipeline
+    * select a 'starter pipeline'
+    * Insert the following code as pipeline
+* Create Pipeline variables
+    * CF-USER = SAP Cloud Platform username
+    * CF-PASSWORD = SAP Cloud Platform password
+    * CF-API = login url (eg. https://api.cf.us10.hana.ondemand.com)
+    * CF-ORG = Organization 
+    * CF-SPACE = Space (eg. dev)
+* Run the pipeline
 
 
 ## Documentation
