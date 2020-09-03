@@ -26,19 +26,6 @@ stages:
         - bash: 'mtaBuild --build-target CF --mtar MyBookshop.mtar build'
         - publish: $(System.DefaultWorkingDirectory)/.
           artifact: WebApp
-          
-
-- stage: test
-  displayName: Run Karma Test Suite
-  jobs:
-    - job: test
-      pool:
-        vmImage: 'ubuntu-latest'
-      container: node
-      steps:
-        - bash: 'cd MySampleApp && npm config set @sap:registry "https://npm.sap.com" && npm install && npm run-script test'
-        - publish: $(System.DefaultWorkingDirectory)/.
-          artifact: TestResult
 
 - stage: deploy
   displayName: Deployment to SAP Cloud Platform (cf)
