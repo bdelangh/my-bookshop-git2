@@ -34,4 +34,7 @@ stages:
       steps:
         - download: current
           artifact: mtar
-        - bash: 'cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf deploy $(Pipeline.Workspace)/mta-archives/my-bookshop2_1.0.0.mtar -f'
+        - bash: cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)"
+          displayName: Login to SAP Cloud Platform
+        - bash: cf deploy $(Pipeline.Workspace)/mta-archives/my-bookshop2_1.0.0.mtar -f
+          displayName: Deploy mtar file
