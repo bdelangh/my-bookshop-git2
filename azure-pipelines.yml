@@ -21,7 +21,7 @@ stages:
       container: mbt
       steps:
         - bash: 'mbt build -p=cf'
-        - publish: $(System.DefaultWorkingDirectory)/mta-archives/.
+        - publish: $(System.DefaultWorkingDirectory)/mta_archives/.
           artifact: mtar
 
 - stage: deploy
@@ -36,5 +36,5 @@ stages:
           artifact: mtar
         - bash: cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)"
           displayName: Login to SAP Cloud Platform
-        - bash: cf deploy $(Pipeline.Workspace)/mta-archives/my-bookshop2_1.0.0.mtar -f
+        - bash: cf deploy $(Pipeline.Workspace)/mtar/my-bookshop2_1.0.0.mtar -f
           displayName: Deploy mtar file
