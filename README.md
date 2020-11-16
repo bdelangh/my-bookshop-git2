@@ -2,7 +2,7 @@
 
 Welcome to your new BookShop Sample project.
 
-It contains these folders and files, following our recommended project layout:
+It contains these folders and files, following the SAP CAP recommended project layout:
 
 File / Folder | Purpose
 ---------|----------
@@ -13,8 +13,7 @@ File / Folder | Purpose
 `readme.md` | this getting started guide
 
 
-## Next Steps...
-
+## Run the application
 - Open a new terminal and run  `cds watch`
 - ( in VSCode simply choose _**Terminal** > Run Task > cds watch_ )
 - Start adding content, e.g. a [db/schema.cds](db/schema.cds), ...
@@ -24,7 +23,7 @@ File / Folder | Purpose
 
 Learn more at https://cap.cloud.sap/docs/get-started/
 
-## Deployment
+## Manual Deployment
 This project can be deployed via a mta-file.
 The deployment descriptor is mta.yaml.
 Documentation can be found at [Deploy using MTA](https://cap.cloud.sap/docs/advanced/deploy-to-cloud#deploy-using-mta)
@@ -56,7 +55,7 @@ The mta file can be generated via the command
  cf install-plugin multiapps
  ```
 
-## Dcoker Images
+## Docker Images
 SAP provides docker images to build and deploy the app. These images can be called via Azure DevOps.
 The docker images can be found on dockerhub.
 <!-- * Deprecated - MTA Builder : [ppiper/mta-archive-builder](https://hub.docker.com/r/ppiper/mta-archive-builder). For more information, have a look at [Multitarget Application Archive Builder](https://github.com/SAP/devops-docker-mta-archive-builder) -->
@@ -81,7 +80,7 @@ sudo docker run --rm -v "${PWD}":/project ppiper/cf-cli /bin/bash -c "cf login -
 * You can now test the bookshop app on the SAP Cloud Platform
 
 ## Integration with Azure DevOps
-Building and deploying the application can be done via Azure DevOps. 
+Building and deploying the application can also be done via Azure DevOps. 
 
 * Login to Azure DevOps
 * Create a new project in Azure DevOps
