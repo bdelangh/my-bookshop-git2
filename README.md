@@ -75,7 +75,7 @@ sudo docker run -it --rm -v "$(pwd):/project" devxci/mbtci:latest mbt build -p=c
 * the mtar file should now be available at ../mta_archives
 * Deploy to SAP Cloud Platform using the following command :
 ```
-sudo docker run --rm -v "${PWD}":/project ppiper/cf-cli /bin/bash -c "cf login -u 'bart.delanghe@microsoft.com' -p 'MicroBelg&7' -a 'https://api.cf.us10.hana.ondemand.com' -o '68f6a2bbtrial' -s 'dev' && cd /project && cf deploy mta_archives/my-bookshop2_1.0.0.mtar"
+sudo docker run --rm -v "${PWD}":/project ppiper/cf-cli /bin/bash -c "cf login -u 'bart.delanghe@microsoft.com' -p 'SapBelg&8' -a 'https://api.cf.eu10.hana.ondemand.com' -o '16ec146etrial' -s 'dev' && cd /project && cf deploy mta_archives/my-bookshop2_1.0.0.mtar"
 ```
 * You can now test the bookshop app on the SAP Cloud Platform
 
