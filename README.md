@@ -57,10 +57,10 @@ As another intermediary step, let's run the docker images manually. This can be 
 The following commands are executed on this docker vm. 
 * Clone the github directory & change to the root directory of your application
 ```
-git clone https://github.com/bdelangh/my-bookshop-mta.git
+git clone https://github.com/bdelangh/my-bookshop-devops.git
 cd my-bookshop-mta
 ```
-* run the docker image to build the mtar archive. The folder containing the application needs to be mounted into the image at `/project`.
+* run the docker image to build the mtar archive. The folder containing the application needs to be mounted into the image at `/project`.[]
 ```
 sudo docker run -it --rm -v "$(pwd):/project" devxci/mbtci:latest mbt build -p=cf
 ```
@@ -91,11 +91,14 @@ Building and deploying the application can also be done using Azure DevOps.
 >Note : In a production environment you might want to store some of these values in a KeyVault.   
 * Run the pipeline to deploy the application
 
+The pipeline we're using is directly deploying towards SCP, for production usage you might want to incorporate Unit testing, Integration testing, ... .
+
 <!-- Notes :
 * System.DefaultWorkingDirectory : The local path on the agent where your source code files are downloaded.
 * Pipeline.Workspace : The local path on the agent where all folders for a given build pipeline are created.
 -->
 
-
 ## Documentation
+* [Cloud MTA Build Tool](https://sap.github.io/cloud-mta-build-tool/)
+* [Project "Piper" Docker Images](https://hub.docker.com/u/ppiper)
 * [How to Use Project “Piper” Docker Images for CI/CD with Azure DevOps](https://blogs.sap.com/2019/10/24/how-to-use-project-piper-docker-images-for-cicd-with-azure-devops/)
