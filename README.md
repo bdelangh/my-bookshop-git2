@@ -88,7 +88,6 @@ Building and deploying the application can also be done using Azure DevOps.
     * CF-API = SAP Cloud Platform login url (eg. https://api.cf.eu10.hana.ondemand.com)
     * CF-ORG = Organization 
     * CF-SPACE = Space (eg. dev)
->Note : In a production environment you might want to store some of these values in a KeyVault.   
 * Run the pipeline to deploy the application
 
 The pipeline we're using is directly deploying towards SCP, for production usage you might want to incorporate Unit testing, Integration testing, ... .
