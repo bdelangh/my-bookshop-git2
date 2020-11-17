@@ -79,7 +79,7 @@ Building and deploying the application can also be done using Azure DevOps.
 * Login to Azure DevOps
 * Create a new project in Azure DevOps
 * Create a new pipeline
-    * point to your github with the source code
+    * point to your github to retrieve the source code
     * select a 'starter pipeline'
     * Insert the following code as pipeline : [azure-pipelines.yml](azure-pipelines.yml)
 * Create Pipeline variables : these variables are used to login to SAP Cloud Platform. 
