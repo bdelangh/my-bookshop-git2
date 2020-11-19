@@ -1,4 +1,4 @@
-# Deploying SAP CAP application to SAP Cloud Platform using Azure DevOps
+# Deploying SAP CAP application to SAP Cloud Platform using GitHub Actions
 
 This example makes use of the SAP CAP BookShop Sample project. This sample uses NodeJS at the application layer and HANA as a database.
 The original project can be found at [SAP Cloud CAP Samples](https://github.com/SAP-samples/cloud-cap-samples).
