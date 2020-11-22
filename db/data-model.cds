@@ -1,4 +1,4 @@
-namespace my.bookshop2;
+namespace my.bookshop.git;
 using { Country, managed } from '@sap/cds/common';
 
 entity Books {

@@ -34,10 +34,10 @@ jobs:
       - name: Build MTA
         run: mbt build -p cf
       - name: Upload Artifact
-        uses: actions/upload-artifact@master	
+        uses: actions/upload-artifact@master
         with:	
-         name: mta
-         path: ./mta_archives/my-bookshop-git_1.0.0.mtar
+          name: mta
+          path: ./mta_archives/my-bookshop-git_1.0.0.mtar
   
   deploy:
     needs: build
@@ -56,6 +56,6 @@ jobs:
          cf_password: ${{ secrets.CF_PASSWORD }}
          cf_org: ${{ secrets.CF_ORG }}
          cf_space: ${{ secrets.CF_SPACE }}
-         command: deploy ./cap-github-actions_1.0.0.mtar -f 
+         command: deploy ./my-bookshop-git_1.0.0.mtar -f 
 
      
