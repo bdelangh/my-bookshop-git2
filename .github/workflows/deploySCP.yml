@@ -52,7 +52,7 @@ jobs:
          name: mta
          path: ./
      - name: Deploy to Cloud Foundry
-       uses: guerric-p/cf-cli-action@master
+       uses: bdelangh/cf-cli-action@master
        with:
          cf_api: ${{ secrets.CF_API }}
          cf_username: ${{ secrets.CF_USERNAME }}

@@ -1,4 +1,4 @@
-using my.bookshop.git as my from '../db/data-model';
+using my.bookshop.git2 as my from '../db/data-model';
 
 service CatalogService {
   entity Books @readonly as projection on my.Books;
