@@ -45,12 +45,12 @@ jobs:
 #    needs: build
     runs-on: ubuntu-latest
     steps:
-     - name: Download Artifact
-       uses: actions/download-artifact@master
-       with:
-         #name should correspond to the name of the upload step
-         name: mta
-         path: ./
+#     - name: Download Artifact
+#       uses: actions/download-artifact@master
+#       with:
+#         #name should correspond to the name of the upload step
+#         name: mta
+#         path: ./
      - name: Deploy to Cloud Foundry
        uses: bdelangh/cf-cli-action@main
        with:
