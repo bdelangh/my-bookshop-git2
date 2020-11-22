@@ -42,7 +42,7 @@ jobs:
 #          path: ./mta_archives/my-bookshop-git2_1.0.0.mtar
   
   deploy:
-    needs: build
+#    needs: build
     runs-on: ubuntu-latest
     steps:
      - name: Download Artifact
