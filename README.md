@@ -42,13 +42,11 @@ The mta file can be generated via the command
  >cf install-plugin multiapps
  >```
 
-## Deployment using GitHub Actions
+## Deployment using GitHub Actions and SAP Project Piper Docker images
 Building and deploying the application can also be done using GitHub actions.
 
 * Create a new Workflow under github Actions
     * Insert the following code as pipeline : [deploySCP.yml](.github\workflows.yml)
-* In the Build step, a linux vm is created, NodeJs and the MBT build tool are installed. The MTAR artifact is published in the last step.
-* The Deploy steps picks up the artifact and Uses a predefined github action (https://github.com/Guerric-P) to deploy to the SAP Cloud Platform. The SAP Cloud Platform connections parameters are retrieved from`secrets`.
 * Create Secrets under `Setting / Secrets` : these variables are used to login to SAP Cloud Platform.  
     * CF_USER = SAP Cloud Platform username
     * CF_PASSWORD = SAP Cloud Platform password
