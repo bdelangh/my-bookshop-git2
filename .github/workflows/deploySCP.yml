@@ -12,34 +12,34 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Code Checkout
-        uses: actions/checkout@v2
-      #Prepare NodeJs
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
-      #Install the MTA Build tool
-      - name: Install MTA build tool
-        run: npm install -g mbt
-      # Do not generate package-lock.json
-      # See https://blogs.sap.com/2020/07/07/escaping-eintegrity-hell/
-      - name: Disable package-lock.json
-        run: npm config set package-lock false
-      - name: Build MTA
-        run: mbt build -p cf
-      - name: Upload Artifact
-        uses: actions/upload-artifact@master
-        with:
-          name: mta
-          path: ./mta_archives/my-bookshop-git2_1.0.0.mtar
+#  build:
+#    # The type of runner that the job will run on
+#    runs-on: ubuntu-latest
+#
+#    # Steps represent a sequence of tasks that will be executed as part of the job
+#    steps:
+#      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+#      - name: Code Checkout
+#        uses: actions/checkout@v2
+#      #Prepare NodeJs
+#      - name: Use Node.js
+#        uses: actions/setup-node@v1
+#        with:
+#          node-version: 12
+#      #Install the MTA Build tool
+#      - name: Install MTA build tool
+#        run: npm install -g mbt
+#      # Do not generate package-lock.json
+#      # See https://blogs.sap.com/2020/07/07/escaping-eintegrity-hell/
+#      - name: Disable package-lock.json
+#        run: npm config set package-lock false
+#      - name: Build MTA
+#        run: mbt build -p cf
+#- name: Upload Artifact
+#        uses: actions/upload-artifact@master
+#        with:
+#          name: mta
+#          path: ./mta_archives/my-bookshop-git2_1.0.0.mtar
   
   deploy:
     needs: build
